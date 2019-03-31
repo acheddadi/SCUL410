@@ -743,7 +743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1344456237
 Transform:
   m_ObjectHideFlags: 0
@@ -1130,7 +1130,12 @@ Prefab:
         type: 2}
       propertyPath: Target
       value: 
-      objectReference: {fileID: 1344456237}
+      objectReference: {fileID: 290209835}
+    - target: {fileID: 114997378830456320, guid: 0124180602cdd724187d9e3a7c564376,
+        type: 2}
+      propertyPath: NeighbourDistance
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0124180602cdd724187d9e3a7c564376, type: 2}
   m_IsPrefabAsset: 0
