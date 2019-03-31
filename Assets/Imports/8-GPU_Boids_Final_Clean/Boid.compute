@@ -53,6 +53,7 @@ CBUFFER_START(Params)
 	float DeltaTime;
 	float RotationSpeed;
 	float BoidSpeed;
+	bool CatchUp;
 	float BoidSpeedVariation;
 	float3 FlockPosition;
 	float NeighbourDistance;
@@ -75,11 +76,14 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 	float noise = clamp(noise1(_Time / 100.0 + boid.noise_offset), -1, 1) * 2.0 - 1.0;
 	float velocity = BoidSpeed * (1.0 + noise * BoidSpeedVariation);
 	
-	// Make slow birds go faster if far away from flock ?
-	/*float distance_from_flock = distance(boid.position, FlockPosition);
-	if (distance_from_flock > 50)
-		velocity += distance_from_flock / 50;
-	velocity += min(max(distance(boid.position, FlockPosition) / 50, 1), BoidSpeed * 200);*/
+	if (CatchUp)
+	{
+		// Make slow birds go faster if far away from flock ?
+		float distance_from_flock = distance(boid.position, FlockPosition);
+		if (distance_from_flock > 50)
+			velocity += (distance_from_flock / 50) / 2;
+		velocity += (min(max(distance(boid.position, FlockPosition) / 50, 1), BoidSpeed * 200)) / 2;
+	}
 
 	float3 boid_pos = boid.position;
 	float3 boid_dir = boid.direction;

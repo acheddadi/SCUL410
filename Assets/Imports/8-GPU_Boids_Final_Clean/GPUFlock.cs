@@ -55,6 +55,7 @@ public class GPUFlock : MonoBehaviour {
     public float BoidSpeedVariation = 0.9f;
     public float BoidFrameSpeed = 10f;
     public bool FrameInterpolation = true;
+    public bool AllowCatchUp = false;
     public float AffectorForce = 2f;
     public float AffectorDistance = 2f;
     public float MaxAffectorFullAxisSize = 20f;
@@ -189,6 +190,7 @@ public class GPUFlock : MonoBehaviour {
         _ComputeFlock.SetFloat("DeltaTime", Time.deltaTime);
         _ComputeFlock.SetFloat("RotationSpeed", RotationSpeed);
         _ComputeFlock.SetFloat("BoidSpeed", BoidSpeed);
+        _ComputeFlock.SetBool("CatchUp", AllowCatchUp);
         _ComputeFlock.SetFloat("BoidSpeedVariation", BoidSpeedVariation);
         _ComputeFlock.SetVector("FlockPosition", Target.transform.position);
         _ComputeFlock.SetFloat("NeighbourDistance", NeighbourDistance);
@@ -219,10 +221,9 @@ public class GPUFlock : MonoBehaviour {
     // Execution order should be the lowest possible
     void Update() {
     #if UNITY_EDITOR
-        SetComputeData();
         SetMaterialData();
     #endif
-
+        SetComputeData();
         _ComputeFlock.Dispatch(this.kernelHandle, this.BoidsCount / THREAD_GROUP_SIZE + 1, 1, 1);
 
         GL.Flush(); // Make sure our Dispatch() execute right now

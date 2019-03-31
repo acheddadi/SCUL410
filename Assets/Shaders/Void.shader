@@ -45,7 +45,7 @@
 			}
 			
 			#define mod(x, y) (x-y*floor(x/y))
-			#define T _Time.y * .1
+			#define T _Time.y * .25 //Speed
 
 			// toggle for psychedelic madness
 			#define ENABLE_COLOR_CYCLE 0
@@ -68,8 +68,8 @@
 			float noise(float2 p) {
 				float2 i = ceil(p);
 				float2 f = frac(p);
-				//float2 u = f * f * (3. - 2. * f); //Low Fps - High graphics
-				float2 u = float2(1.0, 1.0); //Super high Fps - Muddy low graphics
+				float2 u = f * f * (3. - 2. * f); //Low Fps - High graphics
+				//float2 u = float2(1.0, 1.0); //Super high Fps - Muddy low graphics
 				float a = random(i);
 				float b = random(i + float2(1., 0.));
 				float c = random(i + float2(0., 1.));
@@ -81,7 +81,7 @@
 				float s = .0;
 				float m = .0;
 				float a = .5;
-				for (int i = 0; i < 8; i++) {
+				for (int i = 0; i < 2; i++) { //Precision
 					s += a * noise(p);
 					m += a;
 					a *= .5;
@@ -148,7 +148,7 @@
 				float3 p;
 
 				float t = 0.;
-				for (int i = 0; i < 128; i++) {
+				for (int i = 0; i < 128; i++) { //Grey
 					p = ro + rd * t;
 					float d = map(p);
 					if (d < .001 || t > 50.) break;
@@ -160,10 +160,10 @@
 					#endif
 				}
 				col /= 1.5;
-				/*
+				
 				float3 tex = renderfracal(frac(.1 * p.xz) - .5);
 				if (id == 1) col += tex / (1. + t * t * .5);
-				if (id == 2) col += abs(.1 / sin(10. * p.y + T)) * float3(0., 1., 1.); *///Spacey stuff
+				if (id == 2) col += abs(.1 / sin(10. * p.y + T)) * float3(0., 1., 1.); //Spacey stuff
 
 				return col;
 
