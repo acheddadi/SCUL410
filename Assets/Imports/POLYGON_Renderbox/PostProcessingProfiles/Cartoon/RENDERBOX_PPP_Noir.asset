@@ -100,10 +100,10 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.25
+        intensity: 0.15
         threshold: 1.1
-        softKnee: 0.5
-        radius: 4
+        softKnee: 1
+        radius: 5.96
         antiFlicker: 1
       lensDirt:
         texture: {fileID: 0}
@@ -294,16 +294,16 @@ MonoBehaviour:
           m_Loop: 0
           m_ZeroValue: 0.5
           m_Range: 1
-        e_CurrentEditingCurve: 0
+        e_CurrentEditingCurve: 4
         e_CurveY: 1
         e_CurveR: 0
         e_CurveG: 0
         e_CurveB: 0
   userLut:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
-      lut: {fileID: 0}
-      contribution: 1
+      lut: {fileID: 2800000, guid: 5097650916f7ae947ab1ab5e005739b9, type: 3}
+      contribution: 0.15
   chromaticAberration:
     m_Enabled: 0
     m_Settings:
