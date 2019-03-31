@@ -8,10 +8,6 @@ public class FPSCounter : MonoBehaviour
     void Update()
     {
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
-        if (Input.GetKey("escape"))
-        {
-            Application.Quit();
-        }
     }
 
     void OnGUI()

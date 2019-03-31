@@ -17,7 +17,6 @@ public class CameraController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Cursor.visible = false;
         cameraPosition = GetComponent<Transform>();
         deltaX = cameraPosition.localEulerAngles.y;
         deltaY = cameraPosition.localEulerAngles.x;
